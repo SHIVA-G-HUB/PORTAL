@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gentize Innovations — Attendance System</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- ─── TOAST ──────────────────────────────────────────────────────────────── -->
+<div id="notification"></div>
+
+<!-- ══════════════════════════════════════════════════════════════════════════
+     PAGE: HOME
+══════════════════════════════════════════════════════════════════════════ -->
+<div id="page-home" class="page">
+
+  <header class="home-header">
+    <div class="h-logo">
+      <div class="h-logo-mark">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18M3 9h6M3 15h6M15 9h6M15 15h6"/></svg>
+      </div>
+      <div>
+        <div class="h-logo-text">Gentize Innovations</div>
+        <div class="h-logo-sub">Attendance Management System</div>
+      </div>
+    </div>
+    <div class="home-clock">
+      <div class="live-dot-wrap"><div class="live-dot-inner"></div><div class="live-dot-ring"></div></div>
+      <span class="live-clock-val"></span>
+    </div>
+  </header>
+
+  <div class="home-hero">
+    <div class="hero-eyebrow">
+      <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><circle cx="5" cy="5" r="5"/></svg>
+      QR-Based Attendance Platform
+    </div>
+
+    <h1 class="hero-title">
+      Smart Attendance,<br><em>Effortlessly Tracked</em>
+    </h1>
+    <p class="hero-sub">Real-time employee check-ins, check-outs, and working hours — all powered by QR scanning technology.</p>
+
+    <div class="hero-cards">
+      <div class="hero-card brand" id="btn-go-scan">
+        <div class="hero-card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C84B31" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        </div>
+        <div class="hero-card-title">Scan QR Code</div>
+        <div class="hero-card-sub">Employee self-service attendance</div>
+      </div>
+      <div class="hero-card neutral" id="btn-go-login">
+        <div class="hero-card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="hero-card-title">Admin Dashboard</div>
+        <div class="hero-card-sub">Manage records &amp; employees</div>
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num" id="home-total">—</div>
+        <div class="hero-stat-label">Active Employees</div>
+      </div>
+      <div class="hero-stat-div"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-num" id="home-present">—</div>
+        <div class="hero-stat-label">Present Today</div>
+      </div>
+      <div class="hero-stat-div"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">Live</div>
+        <div class="hero-stat-label">Real-Time Tracking</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="home-footer">
+    &copy; 2025 Gentize Innovations &nbsp;&middot;&nbsp; info@gentizeinnovations.com &nbsp;&middot;&nbsp; +91 7200990203
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════════════
+     PAGE: LOGIN
+══════════════════════════════════════════════════════════════════════════ -->
+<div id="page-login" class="page">
+  <div class="login-wrap">
+    <div class="login-card">
+      <div class="login-brand">
+        <div class="login-logo-mark">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18M3 9h6M3 15h6M15 9h6M15 15h6"/></svg>
+        </div>
+        <div class="login-title">Admin Login</div>
+        <div class="login-subtitle">Gentize Innovations · Attendance System</div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <input id="login-email" class="input" type="email" placeholder="admin@gentizeinnovations.com"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input id="login-pass" class="input" type="password" placeholder="Enter password"/>
+      </div>
+
+      <div id="login-error" class="error-box"></div>
+
+      <button id="btn-login" class="btn btn-primary btn-full btn-lg" style="margin-bottom:10px">Sign In to Dashboard</button>
+      <div class="demo-hint">Demo: <strong>admin@gentizeinnovations.com</strong> / <strong>admin123</strong></div>
+
+      <button id="btn-back-login" class="btn btn-ghost btn-full" style="margin-top:12px">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        Back to Home
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════════════
+     PAGE: SCAN
+══════════════════════════════════════════════════════════════════════════ -->
+<div id="page-scan" class="page">
+  <header class="scan-header">
+    <div class="scan-logo">
+      <div class="scan-logo-mark">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18M3 9h6M3 15h6M15 9h6M15 15h6"/></svg>
+      </div>
+      <div>
+        <div class="scan-logo-text">Gentize Innovations</div>
+        <div class="scan-logo-sub">QR Attendance Portal</div>
+      </div>
+    </div>
+    <button id="btn-back-scan" class="btn btn-ghost">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Back
+    </button>
+  </header>
+
+  <div class="scan-body">
+    <div class="scan-hero">
+      <div class="scan-badge">
+        <div class="live-dot-wrap" style="margin-right:2px"><div class="live-dot-inner" style="background:var(--brand)"></div><div class="live-dot-ring" style="background:var(--brand)"></div></div>
+        <span class="live-clock-val"></span>
+      </div>
+      <h1 class="scan-title">Mark Attendance</h1>
+      <p class="scan-date" id="scan-date"></p>
+    </div>
+
+    <!-- Input Form -->
+    <div id="scan-form-wrap">
+      <div class="scan-card">
+        <div class="scan-icon-wrap">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><rect x="7" y="7" width="3" height="3"/><rect x="14" y="7" width="3" height="3"/><rect x="7" y="14" width="3" height="3"/><line x1="14" y1="14" x2="17" y2="14"/><line x1="14" y1="17" x2="17" y2="17"/><line x1="17" y1="14" x2="17" y2="17"/></svg>
+        </div>
+        <div class="scan-card-title">Enter Employee ID</div>
+        <div class="scan-card-sub">Type your ID to check in or check out</div>
+        <input id="scan-input" class="input-lg" placeholder="GI001" autocomplete="off"/>
+        <div id="scan-error" class="error-box" style="margin-top:12px"></div>
+        <button id="btn-scan" class="btn btn-primary btn-full btn-lg" style="margin-top:14px">Confirm Attendance</button>
+        <div class="scan-rules">
+          <div class="scan-rule">
+            <div class="scan-rule-label">Check-in Deadline</div>
+            <div class="scan-rule-val green">9:30 AM</div>
+          </div>
+          <div class="scan-rule">
+            <div class="scan-rule-label">Check-out After</div>
+            <div class="scan-rule-val blue">6:00 PM</div>
+          </div>
+        </div>
+        <div class="scan-tip">Available IDs: GI001 · GI002 · GI003 · GI004 · GI005 · GI006 · GI007</div>
+      </div>
+    </div>
+
+    <!-- Result -->
+    <div id="scan-result-wrap" style="display:none">
+      <div class="scan-result" style="border:2px solid var(--surface-3)">
+        <div class="result-header">
+          <div class="result-ring" id="res-ring"></div>
+          <div class="result-title" id="res-title"></div>
+          <div class="result-msg" id="res-msg"></div>
+        </div>
+        <div class="result-emp-row">
+          <div id="res-avatar"></div>
+          <div>
+            <div class="result-emp-name" id="res-emp-name"></div>
+            <div class="result-emp-meta" id="res-emp-meta"></div>
+          </div>
+        </div>
+        <div class="timing-grid" id="res-timing"></div>
+        <div id="res-hours" class="hours-box" style="display:none">
+          <div class="hours-label">Total Hours Worked</div>
+          <div class="hours-val" id="res-hours-val"></div>
+        </div>
+        <button id="btn-scan-again" class="btn btn-primary btn-full">Mark Another Employee</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════════════
+     PAGE: DASHBOARD
+══════════════════════════════════════════════════════════════════════════ -->
+<div id="page-dashboard" class="page">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-mark">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18M3 9h6M3 15h6M15 9h6M15 15h6"/></svg>
+      </div>
+      <div>
+        <div class="sidebar-logo-text">Gentize</div>
+        <div class="sidebar-logo-sub">Admin Console</div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Navigation</div>
+      <div class="nav-item active" data-tab="dashboard">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        Dashboard
+      </div>
+      <div class="nav-item" data-tab="attendance">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Attendance
+      </div>
+      <div class="nav-item" data-tab="employees">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Employees
+      </div>
+      <div class="nav-item" data-tab="qrcodes">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="3" height="3"/><line x1="21" y1="14" x2="21" y2="17"/><line x1="17" y1="21" x2="21" y2="21"/></svg>
+        QR Codes
+      </div>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="admin-profile">
+        <div class="admin-avatar">A</div>
+        <div>
+          <div class="admin-name">Administrator</div>
+          <div class="admin-email">admin@gentize...</div>
+        </div>
+      </div>
+      <button id="btn-logout" class="btn-ghost-dark">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Sign Out
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <div class="main-content">
+    <div class="topbar">
+      <div>
+        <div class="topbar-title" id="topbar-title">Dashboard Overview</div>
+        <div class="topbar-date"  id="topbar-date"></div>
+      </div>
+      <div class="topbar-right">
+        <div class="topbar-clock">
+          <div class="live-dot-wrap"><div class="live-dot-inner"></div><div class="live-dot-ring"></div></div>
+          <span class="live-clock-val"></span>
+        </div>
+        <button id="btn-topbar-scan" class="btn btn-ghost">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          Scan Portal
+        </button>
+      </div>
+    </div>
+
+    <div class="content-area">
+
+      <!-- Stats -->
+      <div class="stats-grid">
+        <div class="stat-card blue">
+          <div class="stat-accent"></div>
+          <div class="stat-top">
+            <div class="stat-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+          </div>
+          <div class="stat-label">Total Employees</div>
+          <div class="stat-val" id="s-total">—</div>
+        </div>
+        <div class="stat-card green">
+          <div class="stat-accent"></div>
+          <div class="stat-top">
+            <div class="stat-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+          </div>
+          <div class="stat-label">Present Today</div>
+          <div class="stat-val" id="s-present">—</div>
+        </div>
+        <div class="stat-card red">
+          <div class="stat-accent"></div>
+          <div class="stat-top">
+            <div class="stat-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+            </div>
+          </div>
+          <div class="stat-label">Absent Today</div>
+          <div class="stat-val" id="s-absent">—</div>
+        </div>
+        <div class="stat-card yellow">
+          <div class="stat-accent"></div>
+          <div class="stat-top">
+            <div class="stat-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            </div>
+          </div>
+          <div class="stat-label">Late Arrivals</div>
+          <div class="stat-val" id="s-late">—</div>
+        </div>
+        <div class="stat-card purple">
+          <div class="stat-accent"></div>
+          <div class="stat-top">
+            <div class="stat-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            </div>
+          </div>
+          <div class="stat-label">Checked Out</div>
+          <div class="stat-val" id="s-out">—</div>
+        </div>
+      </div>
+
+      <!-- ── DASHBOARD TAB ─────────────────────────────────────────── -->
+      <div id="tab-dashboard" class="tab-panel active">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Live Attendance</div>
+              <div class="card-subtitle">Today's check-in / check-out records</div>
+            </div>
+            <span class="badge green"><span class="badge-live-dot"></span> Live</span>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Employee</th><th>Department</th><th>In Time</th><th>Out Time</th><th>Hours</th><th>Status</th></tr></thead>
+              <tbody id="live-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="dept-grid" id="dept-grid"></div>
+      </div>
+
+      <!-- ── ATTENDANCE TAB ─────────────────────────────────────────── -->
+      <div id="tab-attendance" class="tab-panel">
+        <div class="filter-row">
+          <input id="att-date" type="date" class="input" style="width:auto;flex:0 0 auto"/>
+          <div class="search-wrap">
+            <span class="search-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </span>
+            <input id="att-search" class="input search-input" placeholder="Search name, ID, or department…"/>
+          </div>
+          <button class="btn btn-ghost">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Export
+          </button>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title" id="att-label">Attendance Records</div>
+            <span style="font-size:12px;color:var(--ink-3)" id="att-count"></span>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Emp ID</th><th>Name</th><th>Department</th><th>In Time</th><th>Out Time</th><th>Working Hours</th><th>Status</th></tr></thead>
+              <tbody id="att-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── EMPLOYEES TAB ─────────────────────────────────────────── -->
+      <div id="tab-employees" class="tab-panel">
+        <div class="filter-row">
+          <div class="search-wrap">
+            <span class="search-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </span>
+            <input id="emp-search" class="input search-input" placeholder="Search employees…"/>
+          </div>
+          <button id="btn-add-emp" class="btn btn-primary">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+            Add Employee
+          </button>
+        </div>
+        <div class="emp-grid" id="emp-grid"></div>
+      </div>
+
+      <!-- ── QR CODES TAB ─────────────────────────────────────────── -->
+      <div id="tab-qrcodes" class="tab-panel">
+        <p style="font-size:13px;color:var(--ink-3);margin-bottom:20px;line-height:1.6">
+          Each QR code encodes a unique employee identifier. Print and display them at entry points, or use "Simulate" to test the scanning workflow.
+        </p>
+        <div class="qr-grid" id="qr-grid"></div>
+      </div>
+
+    </div><!-- /content-area -->
+  </div><!-- /main-content -->
+</div><!-- /page-dashboard -->
+
+<!-- ══════════════════════════════════════════════════════════════════════════
+     MODAL: QR VIEWER
+══════════════════════════════════════════════════════════════════════════ -->
+<div id="qr-modal" class="overlay">
+  <div class="modal">
+    <div class="qr-modal-inner">
+      <div id="qm-avatar"></div>
+      <div class="qr-modal-name" id="qm-name"></div>
+      <div class="qr-modal-meta" id="qm-meta"></div>
+      <div class="qr-modal-svg" id="qm-svg"></div>
+      <div class="qr-modal-hint">Scan this code at the attendance terminal</div>
+      <div class="qr-modal-acts">
+        <button id="qm-scan" class="btn btn-primary" style="flex:1;justify-content:center">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          Simulate Scan
+        </button>
+        <button id="btn-qm-close" class="btn btn-ghost" style="flex:1;justify-content:center">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════════════
+     MODAL: ADD EMPLOYEE
+══════════════════════════════════════════════════════════════════════════ -->
+<div id="add-modal" class="overlay">
+  <div class="modal">
+    <div class="modal-title">Add New Employee</div>
+    <form id="add-form" class="modal-form" onsubmit="return false">
+      <div>
+        <label class="form-label">Employee ID</label>
+        <input id="ne-id" class="input" placeholder="e.g. GI009"/>
+      </div>
+      <div>
+        <label class="form-label">Full Name</label>
+        <input id="ne-name" class="input" placeholder="John Doe"/>
+      </div>
+      <div>
+        <label class="form-label">Email Address</label>
+        <input id="ne-email" class="input" type="email" placeholder="john@gentizeinnovations.com"/>
+      </div>
+      <div>
+        <label class="form-label">Role</label>
+        <input id="ne-role" class="input" placeholder="Software Developer"/>
+      </div>
+      <div>
+        <label class="form-label">Phone</label>
+        <input id="ne-phone" class="input" placeholder="+91 9876543000"/>
+      </div>
+      <div>
+        <label class="form-label">Department</label>
+        <select id="ne-dept" class="input" style="cursor:pointer">
+          <option>Design Services</option>
+          <option>Digital Services</option>
+          <option>Medical Illustration</option>
+          <option>Book Publishing</option>
+          <option>Ecom Development</option>
+          <option>Document Scanning</option>
+          <option>LMS Solutions</option>
+        </select>
+      </div>
+      <div id="add-error" class="error-box"></div>
+      <div class="modal-actions">
+        <button id="btn-save-emp" class="btn btn-primary" style="flex:1;justify-content:center">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Add Employee
+        </button>
+        <button id="btn-cancel-emp" class="btn btn-ghost" style="flex:1;justify-content:center">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
